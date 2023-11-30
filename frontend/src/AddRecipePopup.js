@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import axios from 'axios' ;
+import "./AddRecipePopup.css";
 
 class AddRecipePopup extends Component {
   constructor(props) {
@@ -116,80 +117,19 @@ class AddRecipePopup extends Component {
     const { theme,loginUsername } = this.props;
     const { recipeName, selectedIngredients, timeNeeded, process, precautions, allIngredients ,author} = this.state;
     
-    const styles = {
-    popupContainer: {
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    background: 'white',
-    padding: '40px',
-    borderRadius: '5px',
-    minWidth: '50%',
-    textAlign: 'center',
-    },
-    title: {
-    fontSize: '30px',
-    fontWeight: 'bold',
-    marginBottom: '10px',
-    },
-    inputField: {
-    marginTop: '5px',
-    marginBottom: '5px',
-    fontSize: '20px',
-    width: '100%',
-    boxSizing: 'border-box',
-    padding: '8px',
-    borderRadius: '5px',
-    border: '1px solid #ccc',
-    },
-      selectContainer: {
-        marginTop: '5px',
-        marginBottom: '5px',
-        width: '100%',
-        textAlign: 'left',
-      },
-      textArea: {
-        marginTop: '5px',
-        marginBottom: '5px',
-        fontSize: '20px',
-        width: '100%',
-        minHeight: '100px',
-        boxSizing: 'border-box',
-        padding: '8px',
-        borderRadius: '5px',
-        border: '1px solid #ccc',
-      },
-      buttonContainer: {
-        display: 'flex',
-        justifyContent: 'space-evenly',
-        marginTop: '10px',
-      },
-      addrecipebutton: {
-        backgroundColor: theme.colors.button,
-        color: theme.colors.white,
-        width: '30%',
-        minHeight: '40px',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer',
-        fontSize: '15px',
-      },
-    };
-
     return (
       
-      <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.5)' }}>
-        <div style={styles.popupContainer}>
-          <div style={styles.title}>Create Recipe</div>
+      <div className='popupBackground'>
+        <div className='popupContainer'>
+          <div className='title'>Create Recipe</div>
           <input
-            style={styles.inputField}
+            className='addrecipeinputField'
             type="text"
             placeholder="Recipe name"
             value={recipeName}
             onChange={this.handleRecipeNameChange}
           />
-          <div style={styles.selectContainer}>
+          <div className='selectContainer'>
             <Select
               isMulti
               options={allIngredients}
@@ -199,29 +139,29 @@ class AddRecipePopup extends Component {
             />
           </div>
           <input
-            style={styles.inputField}
+            className='addrecipeinputField'
             type="text"
             placeholder="Time needed"
             value={timeNeeded}
             onChange={this.handleTimeNeededChange}
           />
           <textarea
-            style={styles.textArea}
+            className='addrecipetextArea'
             placeholder="Process"
             value={process}
             onChange={this.handleProcessChange}
           />
           <textarea
-            style={styles.textArea}
+            className='addrecipetextArea'
             placeholder="Precautions"
             value={precautions}
             onChange={this.handlePrecautionsChange}
           />
-          <div style={styles.buttonContainer}>
-            <button style={styles.addrecipebutton} onClick={this.handleAddRecipe}>
+          <div className='buttonContainer'>
+            <button className='addrecipebutton' onClick={this.handleAddRecipe}>
               Add Recipe
             </button>
-            <button style={styles.addrecipebutton} onClick={this.handleClosePopup}>
+            <button className='addrecipebutton' onClick={this.handleClosePopup}>
               Cancel
             </button>
           </div>

@@ -12,10 +12,9 @@ function App() {
     const [recipes, setRecipes] = useState([]);
 
     const handleLogin = (username) => {
-      // Your login logic
       setLoginUsername(username);
     };
-  
+   
   const theme = {
     colors: {
       heading: "rgb(3 3 3)",
