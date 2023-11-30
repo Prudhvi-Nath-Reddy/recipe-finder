@@ -61,10 +61,14 @@ class HomePage extends Component {
     this.setState({ isAddRecipePopupOpen: false });
   };
 
+  
 
   render() {
     const { theme, recipes,loginUsername } = this.props;
     const { searchText, selectedOptions, isAddRecipePopupOpen } = this.state;
+    const filteredRecipes = recipes.filter(recipe => {
+      return selectedOptions.every(selectedOption => recipe.ingredients.includes(selectedOption.value));
+    });
 
     return (
       <div>
@@ -94,7 +98,7 @@ class HomePage extends Component {
         )}
 
         <div className='recipecardscontainer'>
-        {recipes.map((recipe,index) => (
+            {filteredRecipes.map((recipe, index) => (
             <div style={{ marginLeft: index === 0 && searchText ? '50%' : '0' }} key={recipe.id}>
               <Link to={`/recipe/${recipe.id}`} key={recipe.id} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <RecipeCard recipe={recipe} />
