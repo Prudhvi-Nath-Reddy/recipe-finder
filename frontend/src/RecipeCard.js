@@ -15,6 +15,6 @@ class RecipeCard extends Component {
     );
   }
 }
-
+ 
 export default RecipeCard;
 

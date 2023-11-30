@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import utensilsIcon from './images/Icon utensils.png';
-import cooking from './images/cooking.png'
+import cooking from './images/cooking.png';
+import chef from './images/chef.gif';
 import { Navigate } from 'react-router-dom';
 import './LandingPage.css';
 import axios from 'axios';
+
 class LandingPage extends Component {
 
   constructor(props) {
@@ -130,9 +132,7 @@ class LandingPage extends Component {
               className='logo'
             />
           </div>
-          <div className='buttoncontainer'>
-            <button onClick={this.handleOpenSignupPopup} className='signupbutton'>Join Now</button>
-          </div>
+          <button onClick={this.handleOpenSignupPopup} className='joinnowbutton'>Join Now</button>
           {/* Signup Popup */}
           {this.state.signupPopup && (
             <div className='popupBackground'>
@@ -175,10 +175,10 @@ class LandingPage extends Component {
         <div className='bottomcontainer'>
           <div className='column1'>
             <div style={{ fontWeight: 'bold', fontSize: '70px', fontFamily: 'Roboto' }}>
-              Discover Delicious Recipes: Your Ultimate Cooking
+              Discover Delicious Recipes: Your Cooking Buddy
             </div>
             <div style={{ fontFamily: 'Roboto', fontSize: '20px', marginLeft: '2%', marginTop: '2%' }}>
-              Introducing the Ultimate Recipe App:Explore,Find,Cook and Share
+              Introducing the Ultimate Recipe App: Explore, Find, Cook and Share
             </div>
             <div className='bottombuttoncontainer'>
               <button className='browserecipesbutton' onClick={this.handleOpenBrowseRecipesPopup} >Browse Recipes</button>
@@ -186,7 +186,7 @@ class LandingPage extends Component {
           </div>
           <div className='column'>
             <img
-              src={cooking} alt='cooking'
+              src={chef} alt='cooking'
             />
           </div>
         </div>

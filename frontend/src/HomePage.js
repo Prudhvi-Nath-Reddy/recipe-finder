@@ -87,7 +87,7 @@ class HomePage extends Component {
           <button className='addrecipebutton' onClick={this.handleAddRecipeClick}>
             Add a Recipe
           </button>
-          <img style={{ marginRight: '3%' }} src={profile} alt="profile image" />
+          <img style={{ marginRight: '5%' }} src={profile} alt="profile image" />
         </div>
         {isAddRecipePopupOpen && (
           <AddRecipePopup
