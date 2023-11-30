@@ -156,8 +156,8 @@ class AddRecipePopup extends Component {
             placeholder="Precautions"
             value={precautions}
             onChange={this.handlePrecautionsChange}
-          />
-          <div className='buttonContainer'>
+          /> 
+          <div className='addrecipebuttonContainer'>
             <button className='addrecipebutton' onClick={this.handleAddRecipe}>
               Add Recipe
             </button>

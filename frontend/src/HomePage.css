@@ -1,0 +1,41 @@
+/* styles.css */
+
+.topnavcontainer {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+  }
+  
+  .searchBarContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    margin-right: 35%;
+    margin-left: 2.3%;
+  }
+  
+  .searchBar {
+    font-size: 20px;
+    border-radius: 5px;
+  }
+  
+
+.addrecipebutton {
+    background-color: #080a0b;
+    color: white;
+    width: '10%';
+    min-height: 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-right: 3%;  
+  }
+
+.recipecardscontainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap ;
+}

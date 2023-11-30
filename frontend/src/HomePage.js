@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import AddRecipePopup from './AddRecipePopup';
 import Select from 'react-select';
 import axios from 'axios' ;
+import './HomePage.css';
 
 class HomePage extends Component {
   constructor(props) {
@@ -28,7 +29,6 @@ class HomePage extends Component {
 
             }
             alldata.push(data2);
-            
           }         
 
         })
@@ -66,58 +66,11 @@ class HomePage extends Component {
     const { theme, recipes,loginUsername } = this.props;
     const { searchText, selectedOptions, isAddRecipePopupOpen } = this.state;
 
-    const styles = {
-      topnavcontainer: {
-        display: 'flex',
-        alignItems: 'start',
-        justifyContent: 'space-between',
-        padding: '10px',
-      },
-      searchBarContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-        position: 'relative',
-      },
-      searchBar: {
-        padding: '10px',
-        fontSize: '16px',
-        borderRadius: '5px',
-      },
-      selectedOptionsContainer: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        marginTop: '5px',
-      },
-      selectedOption: {
-        background: '#eee',
-        borderRadius: '3px',
-        padding: '3px 8px',
-        margin: '2px',
-        display: 'flex',
-        alignItems: 'center',
-      },
-      removeOption: {
-        marginLeft: '5px',
-        cursor: 'pointer',
-      },
-      addrecipebutton: {
-        backgroundColor: theme.colors.button,
-        color: theme.colors.white,
-        width: '10%',
-        minHeight: '40px',  // Corrected property name
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer',
-        fontSize: '15px',
-      },
-    };
-
     return (
       <div>
-        <div style={styles.topnavcontainer}>
-          <div style={styles.searchBarContainer}>
-            <div style={styles.searchBar}>
+        <div className='topnavcontainer'>
+          <div className='searchBarContainer'>
+            <div className='searchBar'>
               <Select
                 isMulti
                 options={this.state.allingredients}
@@ -127,7 +80,7 @@ class HomePage extends Component {
               />
             </div>
           </div>
-          <button style={{ ...styles.addrecipebutton, marginRight: '3%' }} onClick={this.handleAddRecipeClick}>
+          <button className='addrecipebutton' onClick={this.handleAddRecipeClick}>
             Add a Recipe
           </button>
           <img style={{ marginRight: '3%' }} src={profile} alt="profile image" />
@@ -140,7 +93,7 @@ class HomePage extends Component {
           />
         )}
 
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', flexWrap: 'wrap' }}>
+        <div className='recipecardscontainer'>
         {recipes.map((recipe,index) => (
             <div style={{ marginLeft: index === 0 && searchText ? '50%' : '0' }} key={recipe.id}>
               <Link to={`/recipe/${recipe.id}`} key={recipe.id} style={{ textDecoration: 'none', color: 'inherit' }}>

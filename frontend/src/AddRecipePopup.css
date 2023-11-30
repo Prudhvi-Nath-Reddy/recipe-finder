@@ -47,7 +47,7 @@
     text-align: left;
 }
 
-.buttonContainer {
+.addrecipebuttonContainer {
     display: flex;
     justify-content: space-evenly;
     margin-top: 10px;
