@@ -1,11 +1,9 @@
-// RecipeDetails.js
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import './RecipeInfo.css'; // Import the CSS file
 
 const RecipeInfo = ({ recipes }) => {
   const { id } = useParams();
-
-  // Find the recipe with the matching id
   const recipe = recipes.find((recipe) => recipe.id.toString() === id);
 
   if (!recipe) {
@@ -13,58 +11,47 @@ const RecipeInfo = ({ recipes }) => {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      {/* Left and Right Half */}
-      <div style={{ display: 'flex' }}>
-        {/* Left Half */}
-        <div style={{ width: '50%', padding: '10px 10px' }}>
-          <img src={recipe.image} alt={recipe.name} style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }} />
-          <div style={{ display: 'flex', padding: '0 0px' }}>
-            <img src={recipe.image} alt={recipe.name} style={{ width: '33.33%', maxHeight: '200px', objectFit: 'cover', marginRight: '5px' }} />
-            <img src={recipe.image} alt={recipe.name} style={{ width: '33.33%', maxHeight: '200px', objectFit: 'cover', marginRight: '5px' }} />
-            <img src={recipe.image} alt={recipe.name} style={{ width: '33.33%', maxHeight: '200px', objectFit: 'cover' }} />
+    <div className="recipe-info">
+      <div className="recipe-halfs">
+        <div className="left-half">
+          <img src={recipe.image} alt={recipe.name} className="main-image" />
+          <div className="small-images">
+            <img src={recipe.image} alt={recipe.name} className="small-image" />
+            <img src={recipe.image} alt={recipe.name} className="small-image" />
+            <img src={recipe.image} alt={recipe.name} className="small-image" />
           </div>
         </div>
-  
-        {/* Right Half */}
-        <div style={{ width: '50%', padding: '0 20px' }}>
-          <div style={{display:'flex',flexDirection:'row',alignItems:'baseline'}}>
-          <h1>{recipe.name}</h1>
-          <p style={{paddingLeft:'3px'}}>by {recipe.author}</p>
+
+        <div className="right-half">
+          <div className="recipe-header">
+            <h1>{recipe.name}</h1>
+            <p className="author">by {recipe.author}</p>
           </div>
-          {/* Ingredients in Multiple Columns */}
           <h2>Ingredients</h2>
-          <div style={{ display: 'flex', flexDirection: 'column', columnGap: '10px', maxHeight: '200px', overflowY: 'auto' }}>
-            
-            <div style={{ columnCount:5 }}>
+          <div className="ingredients">
+            <div className="ingredient-columns">
               {recipe.ingredients.map((ingredient, index) => (
-                <div key={index} style={{ paddingBottom: '5px' }}>{ingredient}</div>
+                <div key={index} className="ingredient">{ingredient}</div>
               ))}
             </div>
           </div>
-  
-          {/* Additional details about the recipe */}
-          <div style={{ width: '90%' }}>
+
+          <div className="recipe-details">
             <h2>Instructions</h2>
-            <div style={{ maxHeight: '220px', overflowY: 'auto' }}>
-              <pre style={{ whiteSpace: 'pre-wrap' }}>{recipe.instructions}</pre>
+            <div className="instructions">
+              <pre>{recipe.instructions}</pre>
             </div>            
           </div>
         </div>
       </div>
-  
-      {/* Cooking Process below both left and right columns */}
-      <div style={{ width: '90%', padding: '0 20px' }}>
-        <h2>Cooking Process</h2>
-        <pre style={{ whiteSpace: 'pre-wrap' }}>{recipe.cookingProcess}</pre>
-      </div>
-    </div>   
 
+      <div className="cooking-process">
+        <h2>Cooking Process</h2>
+        <pre>{recipe.cookingProcess}</pre>
+      </div>
+    </div>
   );
-  
-  
-  
-  
 };
 
 export default RecipeInfo;
+
