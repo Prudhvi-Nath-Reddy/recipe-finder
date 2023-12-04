@@ -19,6 +19,7 @@ class LandingPage extends Component {
       signupConfirmPassword: '',
       loginUsername: '',
       loginPassword: '',
+      signupImage: null,
     };
   }
 
@@ -119,6 +120,30 @@ class LandingPage extends Component {
     this.setState({ loginPassword: event.target.value });
   };
 
+  handleImageUpload = (event) => {
+    const file = event.target.files[0];
+  
+    // Perform operations with the selected file
+    // For example, you can read the contents using FileReader
+  
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      // Access the file content using reader.result
+      const imageData = reader.result;
+  
+      // Log the data URL
+      console.log('Image Data URL:', imageData);
+  
+      // Update state or perform any other actions
+      this.setState({ signupImage: imageData });
+    };
+  
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+  
+
   render() {
     const { theme } = this.props;
 
@@ -139,6 +164,12 @@ class LandingPage extends Component {
               <div className='signuppopupContainer'>
                 <div className='createaccount'>Create Account</div>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <input
+                  className='signupinput'
+                  type="file"
+                  accept="image/*"
+                  onChange={this.handleImageUpload}
+                />
                   <input className='signupinput' type="text" placeholder="Username" value={this.state.signupUsername} onChange={this.handleSignupUsernameChange} />
                   <input className='signupinput' type="password" placeholder="Password" value={this.state.signupPassword} onChange={this.handleSignupPasswordChange} />
                   <input className='signupinput' type="password" placeholder="Confirm Password" value={this.state.signupConfirmPassword} onChange={this.handleSignupConfirmPasswordChange} />
