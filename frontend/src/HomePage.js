@@ -18,7 +18,7 @@ class HomePage extends Component {
       isAddRecipePopupOpen: false,
       allingredients: alldata,
       profileimage : '' ,
-    
+      issidenavopen: false,
     };
     try {
       console.log('user name bacha :', this.props.loginUsername)
@@ -81,53 +81,69 @@ class HomePage extends Component {
     this.setState({ isAddRecipePopupOpen: false });
   };
 
-  
+  handleClickProfile = () => {
+    this.setState((prevState) => ({
+      issidenavopen: !prevState.issidenavopen,
+    }));
+  };
 
+  handleSignout = () => {
+    console.log("signed out")
+  }
+  
   render() {
     const { theme, recipes,loginUsername } = this.props;
-    const { searchText, selectedOptions, isAddRecipePopupOpen } = this.state;
+    const { searchText, selectedOptions, isAddRecipePopupOpen ,issidenavopen} = this.state;
     const filteredRecipes = recipes.filter(recipe => {
       return selectedOptions.every(selectedOption => recipe.ingredients.includes(selectedOption.value));
     });
 
     return (
-      <div>
-        <div className='topnavcontainer'>
-          <div className='searchBarContainer'>
-            <div className='searchBar'>
-              <Select
-                isMulti
-                options={this.state.allingredients}
-                value={selectedOptions}
-                onChange={this.handleOptionSelect}
-                placeholder="Select Ingredients"
-              />
+      <div >
+        <div className={`main-content ${issidenavopen ? '' : 'open-sidenav'}`}>
+          <div className='topnavcontainer'>
+            <div className='searchBarContainer'>
+              <div className='searchBar'>
+                <Select
+                  isMulti
+                  options={this.state.allingredients}
+                  value={selectedOptions}
+                  onChange={this.handleOptionSelect}
+                  placeholder="Select Ingredients"
+                />
+              </div>
             </div>
+            <button className='addrecipebutton' onClick={this.handleAddRecipeClick}>
+              Add a Recipe
+            </button>
+            <img className = {"profileimage"} style={{ marginRight: '2%' }} src={this.state.profileimage} onClick={this.handleClickProfile} alt="profile image" />
+            
           </div>
-          <button className='addrecipebutton' onClick={this.handleAddRecipeClick}>
-            Add a Recipe
-          </button>
-          <img className = {"profileimage"} style={{ marginRight: '5%' }} src={this.state.profileimage} alt="profile image" />
-          
-        </div>
-        {isAddRecipePopupOpen && (
-          <AddRecipePopup
-            theme={theme} 
-            ingredientsdata ={this.state.allingredients}
-            onClosePopup={this.handleCloseAddRecipePopup}
-            loginUsername={loginUsername}
-          />
-        )}
+          {isAddRecipePopupOpen && (
+            <AddRecipePopup
+              theme={theme} 
+              ingredientsdata ={this.state.allingredients}
+              onClosePopup={this.handleCloseAddRecipePopup}
+              loginUsername={loginUsername}
+            />
+          )}
 
-        <div className='recipecardscontainer'>
-            {filteredRecipes.map((recipe, index) => (
-            <div style={{ marginLeft: index === 0 && searchText ? '50%' : '0' }} key={recipe.id}>
-              <Link to={`/recipe/${recipe.id}`} key={recipe.id} style={{ textDecoration: 'none', color: 'inherit' }}>
-                <RecipeCard recipe={recipe} />
-              </Link>
-            </div>
-          ))}
+          <div className='recipecardscontainer'>
+              {filteredRecipes.map((recipe, index) => (
+              <div style={{ marginLeft: index === 0 && searchText ? '50%' : '0' }} key={recipe.id}>
+                <Link to={`/recipe/${recipe.id}`} key={recipe.id} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <RecipeCard recipe={recipe} />
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
+        {issidenavopen && 
+          <div className="sidenav">
+            <p>{loginUsername}</p>
+            <t onClick={this.handleSignout} >signout</t>
+          </div> 
+        }
       </div>
     );
   }
