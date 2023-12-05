@@ -73,6 +73,10 @@ class AddRecipePopup extends Component {
   
 
   handleAddRecipe = () => {
+    if(!this.state.selectedImages || this.state.selectedImages.length === 0 || this.state.selectedImages.length > 4){
+      alert('please upload 1 to 4 images only');
+      return;
+    }
 
     const { recipeName, selectedIngredients, timeNeeded, process, precautions,author,selectedImages } = this.state;
     
@@ -131,12 +135,24 @@ class AddRecipePopup extends Component {
   
     Promise.all(imagePromises)
       .then((base64Images) => {
-        this.setState({ selectedImages: base64Images });
+        // Append new images to the existing ones in the state
+        this.setState((prevState) => ({
+          selectedImages: [...prevState.selectedImages, ...base64Images],
+        }));
       })
       .catch((error) => {
         console.error('Error converting images to base64:', error);
       });
   };
+
+  handleRemoveImage = (indexToRemove) => {
+    this.setState((prevState) => {
+      const updatedImages = [...prevState.selectedImages];
+      updatedImages.splice(indexToRemove, 1);
+      return { selectedImages: updatedImages };
+    });
+  };
+  
   
   
 
@@ -146,12 +162,19 @@ class AddRecipePopup extends Component {
     const imagePreview = selectedImages.length > 0 && (
       <div className="image-preview">
         {selectedImages.map((base64Image, index) => (
-          <img
-            key={index}
-            src={base64Image}
-            alt={`Selected Image ${index + 1}`}
-            className="preview-image"
-          />
+          <div key={index} className="image-container">
+            <img
+              src={base64Image}
+              alt={`Selected Image ${index + 1}`}
+              className="preview-image"
+            />
+            <button
+              className="remove-image-button"
+              onClick={() => this.handleRemoveImage(index)}
+            >
+              X
+            </button>
+          </div>
         ))}
       </div>
     );

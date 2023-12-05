@@ -41,6 +41,12 @@ class LandingPage extends Component {
   };
 
   handleCreateAccount = () => {
+
+    if (!this.state.signupImage) {
+      alert('Please upload an image')
+      return;
+    }
+
     if (this.state.signupPassword !== this.state.signupConfirmPassword) {
       alert('Password and Confirm Password do not match!');
       return;

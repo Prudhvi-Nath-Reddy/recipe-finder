@@ -72,9 +72,28 @@
 }
 
 .preview-image{
-    max-height: 100px;
+    max-height: 150px;
     margin-left: 2%;
     margin-right: 2%;
     border: 2px groove black;
     border-radius: 20px;
 }
+
+
+  .image-container {
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .remove-image-button {
+    position: absolute;
+    top: 4px;
+    right: 3px;
+    background-color: transparent;
+    border: none;
+    color: black;
+    cursor: pointer;
+    font-size: large;
+    font-weight: bold;
+  }
