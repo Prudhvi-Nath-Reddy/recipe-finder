@@ -11,6 +11,35 @@ class HomePage extends Component {
   constructor(props) {
     super(props);
     const alldata = [] ;
+    this.state = {
+      selectedOptions: [],
+      searchText: '',
+      filteredOptions: [],
+      isAddRecipePopupOpen: false,
+      allingredients: alldata,
+      profileimage : '' ,
+    
+    };
+    try {
+      console.log('user name bacha :', this.props.loginUsername)
+      axios.post("http://localhost:8000/getprofileimage",{username : this.props.loginUsername,
+    })
+      .then(res=>{
+        var gotprofimage = res.data ;
+
+        console.log(gotprofimage)
+        this.setState({profileimage: gotprofimage})
+
+            
+
+      })
+      
+    } catch (error) {
+      console.log(error);
+      // console.log("bye")
+    }
+
+
     try {
         axios.post("http://localhost:8000/getingredients",{
       
@@ -39,14 +68,7 @@ class HomePage extends Component {
       }
 
 
-    this.state = {
-      selectedOptions: [],
-      searchText: '',
-      filteredOptions: [],
-      isAddRecipePopupOpen: false,
-      allingredients: alldata,
     
-    };
   }
 
   handleAddRecipeClick = () => {
@@ -87,7 +109,7 @@ class HomePage extends Component {
           <button className='addrecipebutton' onClick={this.handleAddRecipeClick}>
             Add a Recipe
           </button>
-          <img style={{ marginRight: '5%' }} src={profile} alt="profile image" />
+          <img className = {"profileimage"} style={{ marginRight: '5%' }} src={this.state.profileimage} alt="profile image" />
         </div>
         {isAddRecipePopupOpen && (
           <AddRecipePopup

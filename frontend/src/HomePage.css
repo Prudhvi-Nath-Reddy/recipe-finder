@@ -4,6 +4,11 @@
     padding: 10px;
     margin-top: 1%;
   }
+  .profileimage{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+  }
   
   .searchBarContainer {
     display: flex;

@@ -47,11 +47,12 @@ class LandingPage extends Component {
 
     console.log('Username:', this.state.signupUsername);
     console.log('Password:', this.state.signupPassword);
+    console.log('image:', this.state.signupImage);
     try {
       axios.post("http://localhost:8000/signup", {
         username: this.state.signupUsername, 
         password: this.state.signupPassword,
-        profileimage : this.state.imageData,
+        profileimage2 : this.state.signupImage,
       })
         .then(res => {
           if (res.data === "exist") {
@@ -134,14 +135,17 @@ class LandingPage extends Component {
     const reader = new FileReader();
     reader.onloadend = () => {
       // Access the file content using reader.result
-      const imageData = reader.result;
+      var imageData = reader.result;
   
       // Log the data URL
       // console.log('Image Data URL:', imageData);
   
       // Update state or perform any other actions
+      // imageData = imageData.length;
+      // imageData = imageData.substring(0,100);
+      
       this.setState({ signupImage: imageData });
-      console.log('Image Data URL:', this.state.signupImage);
+      console.log('Image Data URL3:', this.state.signupImage);
     };
   
     if (file) {

@@ -32,3 +32,17 @@ exports.signup = async (req, res) => {
     }
 };
 
+exports.getprofileimage = async (req,res) => {
+    const { username} = req.body;
+    try {
+        const user = await User.find({username});
+        
+        const newRecipes = user.map((element) => (element.profileimage2));
+        res.json(newRecipes[0])
+    } catch (error) {
+        console.error(error);
+        res.json("data not exist");
+    }
+
+}
+
