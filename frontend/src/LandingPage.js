@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import utensilsIcon from './images/Icon utensils.png';
 import cooking from './images/cooking.png';
+import defaultprofile from './images/default_profile.png';
 import chef from './images/chef.gif';
 import { Navigate } from 'react-router-dom';
 import './LandingPage.css';
@@ -136,14 +137,6 @@ class LandingPage extends Component {
     reader.onloadend = () => {
       // Access the file content using reader.result
       var imageData = reader.result;
-  
-      // Log the data URL
-      // console.log('Image Data URL:', imageData);
-  
-      // Update state or perform any other actions
-      // imageData = imageData.length;
-      // imageData = imageData.substring(0,100);
-      
       this.setState({ signupImage: imageData });
       console.log('Image Data URL3:', this.state.signupImage);
     };
@@ -174,6 +167,11 @@ class LandingPage extends Component {
               <div className='signuppopupContainer'>
                 <div className='createaccount'>Create Account</div>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
+                {this.state.signupImage ? (
+                  <img src={this.state.signupImage} alt="Uploaded Image" className='uploaded-image' />
+                ) : (
+                  <img src={defaultprofile} alt="Default Profile Icon" className='uploaded-image' />
+                )}
                 <input
                   className='signupinput'
                   type="file"
