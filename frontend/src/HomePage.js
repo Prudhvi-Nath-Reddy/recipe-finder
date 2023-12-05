@@ -27,10 +27,8 @@ class HomePage extends Component {
       .then(res=>{
         var gotprofimage = res.data ;
 
-        console.log(gotprofimage)
+        console.log('progimage:',gotprofimage)
         this.setState({profileimage: gotprofimage})
-
-            
 
       })
       
@@ -110,10 +108,12 @@ class HomePage extends Component {
             Add a Recipe
           </button>
           <img className = {"profileimage"} style={{ marginRight: '5%' }} src={this.state.profileimage} alt="profile image" />
+          
         </div>
         {isAddRecipePopupOpen && (
           <AddRecipePopup
-            theme={theme} ingredientsdata ={this.state.allingredients}
+            theme={theme} 
+            ingredientsdata ={this.state.allingredients}
             onClosePopup={this.handleCloseAddRecipePopup}
             loginUsername={loginUsername}
           />

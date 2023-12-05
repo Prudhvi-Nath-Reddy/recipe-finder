@@ -63,3 +63,18 @@
     cursor: pointer;
     font-size: 15px;
 }
+
+.image-preview{
+    display: flex;
+    flex-direction: horizontal;
+    align-items: center;
+    justify-content: center;
+}
+
+.preview-image{
+    max-height: 100px;
+    margin-left: 2%;
+    margin-right: 2%;
+    border: 2px groove black;
+    border-radius: 20px;
+}

@@ -14,6 +14,7 @@ class AddRecipePopup extends Component {
       process: '',
       precautions: '',
       allIngredients: [],
+      selectedImages: [],
       author : localStorage.getItem('author'),
     };
     console.log(this.state)
@@ -73,10 +74,10 @@ class AddRecipePopup extends Component {
 
   handleAddRecipe = () => {
 
-    const { recipeName, selectedIngredients, timeNeeded, process, precautions,author } = this.state;
+    const { recipeName, selectedIngredients, timeNeeded, process, precautions,author,selectedImages } = this.state;
     
-    console.log({ recipeName, selectedIngredients, timeNeeded, process, precautions,author })
-
+    console.log({ recipeName, selectedIngredients, timeNeeded, process, precautions,author,selectedImages})
+ 
     try {
             const onlyselingrenames = []
             for (let i = 0; i < selectedIngredients.length; i++) {
@@ -96,9 +97,6 @@ class AddRecipePopup extends Component {
             console.log(error)
             
         }
-    // console.log('Adding recipe:', { recipeName, selectedIngredients, timeNeeded, process, precautions });
-
-    // Close the popup
     this.handleClosePopup();
   };
 
@@ -113,15 +111,61 @@ class AddRecipePopup extends Component {
     this.props.onClosePopup();
   };
 
+  handleImageChange = (event) => {
+    const files = event.target.files;
+    const imagePromises = [];
+  
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const reader = new FileReader();
+  
+      imagePromises.push(
+        new Promise((resolve, reject) => {
+          reader.onload = (e) => resolve(e.target.result);
+          reader.onerror = (e) => reject(e);
+          reader.readAsDataURL(file);
+        })
+      );
+    }
+  
+    Promise.all(imagePromises)
+      .then((base64Images) => {
+        this.setState({ selectedImages: base64Images });
+      })
+      .catch((error) => {
+        console.error('Error converting images to base64:', error);
+      });
+  };
+  
+  
+
   render() {
-    const { theme,loginUsername } = this.props;
-    const { recipeName, selectedIngredients, timeNeeded, process, precautions, allIngredients ,author} = this.state;
-    
+    const { theme,loginUsername,profileimage } = this.props;
+    const { recipeName, selectedIngredients, timeNeeded, process, precautions, allIngredients ,author,selectedImages} = this.state;
+    const imagePreview = selectedImages.length > 0 && (
+      <div className="image-preview">
+        {selectedImages.map((base64Image, index) => (
+          <img
+            key={index}
+            src={base64Image}
+            alt={`Selected Image ${index + 1}`}
+            className="preview-image"
+          />
+        ))}
+      </div>
+    );
     return (
       
       <div className='popupBackground'>
         <div className='popupContainer'>
           <div className='title'>Create Recipe</div>
+          {imagePreview}
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={this.handleImageChange}
+          />
           <input
             className='addrecipeinputField'
             type="text"
