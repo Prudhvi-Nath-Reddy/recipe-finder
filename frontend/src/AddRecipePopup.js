@@ -87,6 +87,7 @@ class AddRecipePopup extends Component {
             }
             axios.post("http://localhost:8000/sendrecipe",{
                 recipename: recipeName,
+                recipeimage : selectedImages,
                 selectedIngredients:onlyselingrenames,
                 timeneeded:timeNeeded,
                 process:process,

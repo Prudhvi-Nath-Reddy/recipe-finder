@@ -6,7 +6,7 @@ class RecipeCard extends Component {
     const { recipe } = this.props;
     return (
       <div className="recipe-card">
-        <img src={recipe.image} alt={recipe.name} className="recipe-image" />
+        <img src={recipe.image[0]} alt={recipe.name} className="recipe-image" />
         <div className="recipe-name">
           <strong>{recipe.name}</strong>
         </div>

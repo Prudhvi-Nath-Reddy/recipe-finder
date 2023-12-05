@@ -1,11 +1,11 @@
 const Recipe = require('../../models/recipe.model');
 
 exports.addRecipe = async (req, res) => {
-    const { recipename, selectedIngredients, timeneeded, process, precautions, author } = req.body;
+    const { recipename, recipeimage,selectedIngredients, timeneeded, process, precautions, author } = req.body;
     try {
         const newRecipe = new Recipe({
             recipename: recipename,
-            recipeimage: 'https://imgs.search.brave.com/2ymVtaLQRp8rNEaAOjQpJjpvJ2FZu2fOCpdHQv6wheE/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA1LzUxLzA3LzI1/LzM2MF9GXzU1MTA3/MjU1OF9yRU51eDlm/cWxlYzVHUEJKU2FU/b1Q2OXhqY1lpR3hq/ZS5qcGc', // replace with actual image URL
+            recipeimage: recipeimage, 
             ingredients: selectedIngredients,
             process:process,
             instructions: precautions,

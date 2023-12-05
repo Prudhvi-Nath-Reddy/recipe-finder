@@ -5,7 +5,8 @@ import './RecipeInfo.css'; // Import the CSS file
 const RecipeInfo = ({ recipes }) => {
   const { id } = useParams();
   const recipe = recipes.find((recipe) => recipe.id.toString() === id);
-
+  const len = recipe.image.length ;
+  
   if (!recipe) {
     return <div>Recipe not found</div>;
   }
@@ -14,11 +15,11 @@ const RecipeInfo = ({ recipes }) => {
     <div className="recipe-info">
       <div className="recipe-halfs">
         <div className="left-half">
-          <img src={recipe.image} alt={recipe.name} className="main-image" />
+          <img src={recipe.image[0]} alt={recipe.name} className="main-image" />
           <div className="small-images">
-            <img src={recipe.image} alt={recipe.name} className="small-image" />
-            <img src={recipe.image} alt={recipe.name} className="small-image" />
-            <img src={recipe.image} alt={recipe.name} className="small-image" />
+            <img src={recipe.image[1%len]} alt={recipe.name} className="small-image" />
+            <img src={recipe.image[2%len]} alt={recipe.name} className="small-image" />
+            <img src={recipe.image[3%len]} alt={recipe.name} className="small-image" />
           </div>
         </div>
 
