@@ -16,15 +16,15 @@ exports.login = async (req, res) => {
 };
 
 exports.signup = async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password ,profileimage2} = req.body;
     try {
         const existingUser = await User.findOne({ username });
         if (existingUser) {
             res.json("exist");
         } else {
-            const newUser = new User({ username, password });
+            const newUser = new User({ username, password, profileimage2 });
             await newUser.save();
-            res.json("notexist");
+            res.json("signedup");
         }
     } catch (error) {
         console.error(error);

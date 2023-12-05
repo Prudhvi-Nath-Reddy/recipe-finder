@@ -49,16 +49,19 @@ class LandingPage extends Component {
     console.log('Password:', this.state.signupPassword);
     try {
       axios.post("http://localhost:8000/signup", {
-        username: this.state.signupUsername, password: this.state.signupPassword
+        username: this.state.signupUsername, 
+        password: this.state.signupPassword,
+        profileimage : this.state.imageData,
       })
         .then(res => {
           if (res.data === "exist") {
-            alert("alreadyexists")
+            alert("account alreadyexists")
 
           }
-          else if (res.data === "notexist") {
-            alert("not signed up")
+          else if (res.data === "signedup") {
+            alert("Hurray!!! Succefully signed up")
           }
+        
 
         })
 
@@ -74,7 +77,9 @@ class LandingPage extends Component {
     console.log('eneterd handle login');
     try {
       axios.post("http://localhost:8000/", {
-        username: this.state.loginUsername, password: this.state.loginPassword
+        username: this.state.loginUsername, 
+        password: this.state.loginPassword , 
+        
       })
         .then(res => {
           if (res.data === "crctpswd") {
@@ -84,7 +89,7 @@ class LandingPage extends Component {
             handleLogin(this.state.loginUsername);
           }
           else if (res.data === "notexist") {
-            alert("not signed up")
+            alert("User not signed up")
           }
           else if (res.data === "wrngpswd") {
             alert("wrong password")
@@ -132,10 +137,11 @@ class LandingPage extends Component {
       const imageData = reader.result;
   
       // Log the data URL
-      console.log('Image Data URL:', imageData);
+      // console.log('Image Data URL:', imageData);
   
       // Update state or perform any other actions
       this.setState({ signupImage: imageData });
+      console.log('Image Data URL:', this.state.signupImage);
     };
   
     if (file) {
