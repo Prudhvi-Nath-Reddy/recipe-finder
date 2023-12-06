@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 // Define your initial state
 const initialState = {
   recipes: [],
-  loginUsername: '',
+  loginUsername:'',
 };
 
 // Define your reducer

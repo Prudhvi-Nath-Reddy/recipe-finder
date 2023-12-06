@@ -12,12 +12,10 @@ function App() {
     const recipes = useSelector((state) => state.recipes);
     const [fileContent1, setFileContent1] = useState('');
     const [fileContent2, setFileContent2] = useState('');
-    // const [loginUsername, setLoginUsername] = useState('');
-    // const [recipes, setRecipes] = useState([]);
 
-    const handleLogin = (username) => {
+    const handleLoginusername = (username) => {
       dispatch({ type: 'SET_LOGIN_USERNAME', payload: username });
-      // setLoginUsername(username);
+      sessionStorage.setItem('loginusername', username);
     };
 
   useEffect(() => {
@@ -69,7 +67,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path='/' element={<LandingPage handleLogin={handleLogin} />} />
+          <Route path='/' element={<LandingPage handleLoginusername={handleLoginusername} />} />
           <Route path='/home' element={<HomePage />} />
           <Route path='/recipe/:id' element={<RecipeInfo />} />
         </Routes>

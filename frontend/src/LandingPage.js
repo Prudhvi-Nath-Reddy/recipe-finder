@@ -93,8 +93,9 @@ class LandingPage extends Component {
           if (res.data === "crctpswd") {
             console.log("success")
             this.setState({ isloggedin: true });
-            const { handleLogin } = this.props;
-            handleLogin(this.state.loginUsername);
+            const { handleLoginusername } = this.props;
+            handleLoginusername(this.state.loginUsername);
+            localStorage.setItem('loginUsername', this.state.username);
           }
           else if (res.data === "notexist") {
             alert("User not signed up")

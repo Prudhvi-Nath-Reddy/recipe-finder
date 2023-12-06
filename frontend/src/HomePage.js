@@ -18,17 +18,28 @@ const HomePage = () => {
   const [profileimage, setProfileImage] = useState('');
   const [issidenavopen, setIsSidenavOpen] = useState(false);
 
-  const loginUsername = useSelector((state) => state.loginUsername);
+  // const loginUsername = useSelector((state) => state.loginUsername);
+  const loginUsername = sessionStorage.getItem('loginusername') ;
   const recipes = useSelector((state) => state.recipes)
+  console.log('username:',loginUsername)
   console.log('recipes:',recipes)
   useEffect(() => {
     try {
       console.log('user name bacha :', loginUsername);
-      axios.post('http://localhost:8000/getprofileimage', { username: loginUsername }).then((res) => {
-        var gotprofimage = res.data;
-        console.log('progimage:', gotprofimage);
-        setProfileImage(gotprofimage);
-      });
+      const storedProfileImage = sessionStorage.getItem('profileImage');
+      if (storedProfileImage) {
+        setProfileImage(storedProfileImage);
+      } else {
+        axios.post('http://localhost:8000/getprofileimage', { username: loginUsername }).then((res) => {
+          var gotprofimage = res.data;
+          console.log('progimage:', gotprofimage);
+  
+          // Save profile image to sessionStorage
+          sessionStorage.setItem('profileImage', gotprofimage);
+  
+          setProfileImage(gotprofimage);
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -36,7 +47,6 @@ const HomePage = () => {
     try {
       axios.post('http://localhost:8000/getingredients', {}).then((res) => {
         const ingredientsdata = res.data;
-
         for (let i = 0; i < ingredientsdata.length; i++) {
           const id = ingredientsdata[i]._id;
           const name = ingredientsdata[i].name;
@@ -53,7 +63,7 @@ const HomePage = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [loginUsername]);
+  }, []);
 
   const handleAddRecipeClick = () => {
     setIsAddRecipePopupOpen(true);
