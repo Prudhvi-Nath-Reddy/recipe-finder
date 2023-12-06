@@ -7,29 +7,18 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
-  
+    const dispatch = useDispatch();
+    const loginUsername = useSelector((state) => state.loginUsername);
+    const recipes = useSelector((state) => state.recipes);
     const [fileContent1, setFileContent1] = useState('');
     const [fileContent2, setFileContent2] = useState('');
-    const [loginUsername, setLoginUsername] = useState('');
-    const [recipes, setRecipes] = useState([]);
+    // const [loginUsername, setLoginUsername] = useState('');
+    // const [recipes, setRecipes] = useState([]);
 
     const handleLogin = (username) => {
-      setLoginUsername(username);
+      dispatch({ type: 'SET_LOGIN_USERNAME', payload: username });
+      // setLoginUsername(username);
     };
-   
-  const theme = {
-    colors: {
-      heading: "rgb(3 3 3)",
-      text: "rgba(3 ,3, 3, 1)",
-      white: "#fff",
-      black: " #212529",
-      button: "#080a0b"
-    },
-    media: {
-      mobile: "768px",
-      tab: "1108px"
-    },
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,7 +36,11 @@ function App() {
           author: element.author,
         }));
 
-        setRecipes(newRecipes);
+        
+        console.log(newRecipes);
+
+
+        dispatch({ type: 'SET_RECIPES', payload: newRecipes });
       } catch (error) {
         console.log(error);
       }
@@ -55,7 +48,7 @@ function App() {
     };
 
     fetchData();
-  }, []);
+  }, [dispatch]);
   
   // console.log(recipes)
   // for (let i = 1; i <= 10; i++) 
@@ -76,9 +69,9 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path='/' element={<LandingPage theme={theme} handleLogin={handleLogin} />} />
-          <Route path='/home' element={<HomePage theme={theme} recipes={recipes} loginUsername={loginUsername}/>} />
-          <Route path='/recipe/:id' element={<RecipeInfo recipes={recipes} />} />
+          <Route path='/' element={<LandingPage handleLogin={handleLogin} />} />
+          <Route path='/home' element={<HomePage />} />
+          <Route path='/recipe/:id' element={<RecipeInfo />} />
         </Routes>
       </Router>
     </div>

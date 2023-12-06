@@ -1,8 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import './RecipeInfo.css'; // Import the CSS file
+import './RecipeInfo.css';
+import { useSelector } from 'react-redux';
 
-const RecipeInfo = ({ recipes }) => {
+const RecipeInfo = ({ }) => {
+  const recipes = useSelector((state) => state.recipes)
   const { id } = useParams();
   const recipe = recipes.find((recipe) => recipe.id.toString() === id);
   const len = recipe.image.length ;

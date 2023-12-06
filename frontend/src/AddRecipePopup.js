@@ -1,129 +1,100 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
-import axios from 'axios' ;
+import axios from 'axios';
+import { useSelector } from 'react-redux'; // Importing useSelector from react-redux
 import "./AddRecipePopup.css";
 
-class AddRecipePopup extends Component {
-  constructor(props) {
-    super(props);
+const AddRecipePopup = (props) => {
+  const [recipeName, setRecipeName] = useState('');
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const [timeNeeded, setTimeNeeded] = useState('');
+  const [process, setProcess] = useState('');
+  const [precautions, setPrecautions] = useState('');
+  const [allIngredients, setAllIngredients] = useState([]);
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [author, setAuthor] = useState(localStorage.getItem('author'));
 
-    this.state = {
-      recipeName: '',
-      selectedIngredients: [],
-      timeNeeded: '',
-      process: '',
-      precautions: '',
-      allIngredients: [],
-      selectedImages: [],
-      author : localStorage.getItem('author'),
-    };
-    console.log(this.state)
+  const loginUsername = useSelector((state) => state.loginUsername);
 
+  useEffect(() => {
+    handleIngredients();
+    handleAuthor();
+  }, [loginUsername]); // Trigger useEffect when loginUsername changes
 
-  }
-
-
-    
-  componentDidMount() {
-    // Call handleIngredients to populate allIngredients
-    this.handleauthor();
-    this.handleIngredients();
-  }
-  handleIngredients = ()=> {
-    const  {ingredientsdata} = this.props
-    this.setState({allIngredients:ingredientsdata})
-  }
-
-  handleRecipeNameChange = (event) => {
-    this.setState({ recipeName: event.target.value });
+  const handleIngredients = () => {
+    const { ingredientsdata } = props;
+    setAllIngredients(ingredientsdata);
   };
 
-  handleIngredientsChange = (selectedIngredients) => {
-    this.setState({ selectedIngredients });
+  const handleRecipeNameChange = (event) => {
+    setRecipeName(event.target.value);
   };
 
-  handleTimeNeededChange = (event) => {
-    this.setState({ timeNeeded: event.target.value });
+  const handleIngredientsChange = (selectedIngredients) => {
+    setSelectedIngredients(selectedIngredients);
   };
 
-  handleProcessChange = (event) => {
-    this.setState({ process: event.target.value });
+  const handleTimeNeededChange = (event) => {
+    setTimeNeeded(event.target.value);
   };
 
-  handlePrecautionsChange = (event) => {
-    this.setState({ precautions: event.target.value });
+  const handleProcessChange = (event) => {
+    setProcess(event.target.value);
   };
 
-  handleauthor = () => {
-    const { loginUsername } = this.props;
-  
+  const handlePrecautionsChange = (event) => {
+    setPrecautions(event.target.value);
+  };
+
+  const handleAuthor = () => {
     if (loginUsername) {
-      // Store author name in localStorage
       localStorage.setItem('author', loginUsername);
-  
-      this.setState({ author: loginUsername }, () => {
-        console.log(this.state.author);
-      });
-    } else {
-      console.log(false);
+      setAuthor(loginUsername);
     }
   };
-  
-  
-  
 
-  handleAddRecipe = () => {
-    if(!this.state.selectedImages || this.state.selectedImages.length === 0 || this.state.selectedImages.length > 4){
-      alert('please upload 1 to 4 images only');
+  const handleAddRecipe = () => {
+    if (!selectedImages || selectedImages.length === 0 || selectedImages.length > 4) {
+      alert('Please upload 1 to 4 images only');
       return;
     }
 
-    const { recipeName, selectedIngredients, timeNeeded, process, precautions,author,selectedImages } = this.state;
-    
-    console.log({ recipeName, selectedIngredients, timeNeeded, process, precautions,author,selectedImages})
- 
+    const onlySelectedIngredients = selectedIngredients.map((ingredient) => ingredient.label);
+
     try {
-            const onlyselingrenames = []
-            for (let i = 0; i < selectedIngredients.length; i++) {
-                const element = selectedIngredients[i].label;
-                onlyselingrenames.push(element);
-                
-            }
-            axios.post("http://localhost:8000/sendrecipe",{
-                recipename: recipeName,
-                recipeimage : selectedImages,
-                selectedIngredients:onlyselingrenames,
-                timeneeded:timeNeeded,
-                process:process,
-                precautions:precautions,
-                author:author,
-            })
-        } catch (error) {
-            console.log(error)
-            
-        }
-    this.handleClosePopup();
+      axios.post("http://localhost:8000/sendrecipe", {
+        recipename: recipeName,
+        recipeimage: selectedImages,
+        selectedIngredients: onlySelectedIngredients,
+        timeneeded: timeNeeded,
+        process: process,
+        precautions: precautions,
+        author: author,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
+    handleClosePopup();
   };
 
-  handleClosePopup = () => {
-    this.setState({
-      recipeName: '',
-      selectedIngredients: [],
-      timeNeeded: '',
-      process: '',
-      precautions: '',
-    });
-    this.props.onClosePopup();
+  const handleClosePopup = () => {
+    setRecipeName('');
+    setSelectedIngredients([]);
+    setTimeNeeded('');
+    setProcess('');
+    setPrecautions('');
+    props.onClosePopup();
   };
 
-  handleImageChange = (event) => {
+  const handleImageChange = (event) => {
     const files = event.target.files;
     const imagePromises = [];
-  
+
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       const reader = new FileReader();
-  
+
       imagePromises.push(
         new Promise((resolve, reject) => {
           reader.onload = (e) => resolve(e.target.result);
@@ -132,111 +103,101 @@ class AddRecipePopup extends Component {
         })
       );
     }
-  
+
     Promise.all(imagePromises)
       .then((base64Images) => {
-        // Append new images to the existing ones in the state
-        this.setState((prevState) => ({
-          selectedImages: [...prevState.selectedImages, ...base64Images],
-        }));
+        setSelectedImages((prevImages) => [...prevImages, ...base64Images]);
       })
       .catch((error) => {
         console.error('Error converting images to base64:', error);
       });
   };
 
-  handleRemoveImage = (indexToRemove) => {
-    this.setState((prevState) => {
-      const updatedImages = [...prevState.selectedImages];
+  const handleRemoveImage = (indexToRemove) => {
+    setSelectedImages((prevImages) => {
+      const updatedImages = [...prevImages];
       updatedImages.splice(indexToRemove, 1);
-      return { selectedImages: updatedImages };
+      return updatedImages;
     });
   };
-  
-  
-  
 
-  render() {
-    const { theme,loginUsername,profileimage } = this.props;
-    const { recipeName, selectedIngredients, timeNeeded, process, precautions, allIngredients ,author,selectedImages} = this.state;
-    const imagePreview = selectedImages.length > 0 && (
-      <div className="image-preview">
-        {selectedImages.map((base64Image, index) => (
-          <div key={index} className="image-container">
-            <img
-              src={base64Image}
-              alt={`Selected Image ${index + 1}`}
-              className="preview-image"
-            />
-            <button
-              className="remove-image-button"
-              onClick={() => this.handleRemoveImage(index)}
-            >
-              X
-            </button>
-          </div>
-        ))}
-      </div>
-    );
-    return (
-      
-      <div className='popupBackground'>
-        <div className='popupContainer'>
-          <div className='title'>Create Recipe</div>
-          {imagePreview}
-          <input
-            type="file"
-            accept="image/*"
-            multiple
-            onChange={this.handleImageChange}
+  const imagePreview = selectedImages.length > 0 && (
+    <div className="image-preview">
+      {selectedImages.map((base64Image, index) => (
+        <div key={index} className="image-container">
+          <img
+            src={base64Image}
+            alt={`Selected Image ${index + 1}`}
+            className="preview-image"
           />
-          <input
-            className='addrecipeinputField'
-            type="text"
-            placeholder="Recipe name"
-            value={recipeName}
-            onChange={this.handleRecipeNameChange}
+          <button
+            className="remove-image-button"
+            onClick={() => handleRemoveImage(index)}
+          >
+            X
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+
+  return (
+    <div className='popupBackground'>
+      <div className='popupContainer'>
+        <div className='title'>Create Recipe</div>
+        {imagePreview}
+        <input
+          type="file"
+          accept="image/*"
+          multiple
+          onChange={handleImageChange}
+        />
+        <input
+          className='addrecipeinputField'
+          type="text"
+          placeholder="Recipe name"
+          value={recipeName}
+          onChange={handleRecipeNameChange}
+        />
+        <div className='selectContainer'>
+          <Select
+            isMulti
+            options={allIngredients}
+            value={selectedIngredients}
+            onChange={handleIngredientsChange}
+            placeholder="Select Ingredients"
           />
-          <div className='selectContainer'>
-            <Select
-              isMulti
-              options={allIngredients}
-              value={selectedIngredients}
-              onChange={this.handleIngredientsChange}
-              placeholder="Select Ingredients"
-            />
-          </div>
-          <input
-            className='addrecipeinputField'
-            type="text"
-            placeholder="Time needed"
-            value={timeNeeded}
-            onChange={this.handleTimeNeededChange}
-          />
-          <textarea
-            className='addrecipetextArea'
-            placeholder="Process"
-            value={process}
-            onChange={this.handleProcessChange}
-          />
-          <textarea
-            className='addrecipetextArea'
-            placeholder="Precautions"
-            value={precautions}
-            onChange={this.handlePrecautionsChange}
-          /> 
-          <div className='addrecipebuttonContainer'>
-            <button className='addrecipebutton' onClick={this.handleAddRecipe}>
-              Add Recipe
-            </button>
-            <button className='addrecipebutton' onClick={this.handleClosePopup}>
-              Cancel
-            </button>
-          </div>
+        </div>
+        <input
+          className='addrecipeinputField'
+          type="text"
+          placeholder="Time needed"
+          value={timeNeeded}
+          onChange={handleTimeNeededChange}
+        />
+        <textarea
+          className='addrecipetextArea'
+          placeholder="Process"
+          value={process}
+          onChange={handleProcessChange}
+        />
+        <textarea
+          className='addrecipetextArea'
+          placeholder="Precautions"
+          value={precautions}
+          onChange={handlePrecautionsChange}
+        />
+        <div className='addrecipebuttonContainer'>
+          <button className='addrecipebutton' onClick={handleAddRecipe}>
+            Add Recipe
+          </button>
+          <button className='addrecipebutton' onClick={handleClosePopup}>
+            Cancel
+          </button>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default AddRecipePopup;

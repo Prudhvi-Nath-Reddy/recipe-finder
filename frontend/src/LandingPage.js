@@ -154,8 +154,6 @@ class LandingPage extends Component {
   
 
   render() {
-    const { theme } = this.props;
-
     return (
       <div>
         <div className='topcontainer'>
