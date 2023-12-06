@@ -1,20 +1,22 @@
 .recipe-info {
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
 }
 
 .recipe-halfs {
   display: flex;
+  flex-direction: row;
 }
 
 .left-half, .right-half {
-  width: 50%;
+  width: 35%;
   padding: 10px;
 }
 
 .main-image {
   width: 100%;
-  maxHeight: 400px;
+  max-height: 400px;
   object-fit: cover;
 }
 
@@ -25,7 +27,7 @@
 
 .small-image {
   width: 33.33%;
-  maxHeight: 200px;
+  max-height: 200px;
   object-fit: cover;
   margin-right: 5px;
 }
@@ -48,8 +50,8 @@
   display: flex;
   flex-direction: column;
   column-gap: 10px;
-  maxHeight: 200px;
-  overflowY: auto;
+  max-height: 200px;
+  overflow-y: auto;
 }
 
 .ingredient-columns {
@@ -65,8 +67,8 @@
 }
 
 .instructions {
-  maxHeight: 220px;
-  overflowY: auto;
+  max-height: 220px;
+  overflow-y: auto;
 }
 
 .cooking-process {

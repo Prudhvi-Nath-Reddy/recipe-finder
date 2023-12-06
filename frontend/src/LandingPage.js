@@ -169,7 +169,7 @@ class LandingPage extends Component {
           <button onClick={this.handleOpenSignupPopup} className='joinnowbutton'>Join Now</button>
           {/* Signup Popup */}
           {this.state.signupPopup && (
-            <div className='popupBackground'>
+            <div className='signuppopupBackground'>
               <div className='signuppopupContainer'>
                 <div className='createaccount'>Create Account</div>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -197,7 +197,7 @@ class LandingPage extends Component {
           )}
           {/* Login Popup */}
           {this.state.browseRecipesPopup && (
-            <div className='popupBackground'>
+            <div className='signuppopupBackground'>
               <div className='signuppopupContainer'>
                 <div className='createaccount'>Enter Credentials</div>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>

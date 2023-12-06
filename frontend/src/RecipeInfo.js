@@ -10,7 +10,7 @@ const RecipeInfo = ({ recipes }) => {
   if (!recipe) {
     return <div>Recipe not found</div>;
   }
-
+ 
   return (
     <div className="recipe-info">
       <div className="recipe-halfs">
