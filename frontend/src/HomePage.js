@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import profile from './images/Icon utensils.png';
 import RecipeCard from './RecipeCard';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import AddRecipePopup from './AddRecipePopup';
 import Select from 'react-select';
 import axios from 'axios' ;
@@ -82,6 +82,10 @@ const HomePage = () => {
   };
 
   const handleSignout = () => {
+
+    sessionStorage.removeItem('loginusername');
+    sessionStorage.removeItem('profileImage');
+    window.location.href='/';
     console.log('signed out');
   };
 
