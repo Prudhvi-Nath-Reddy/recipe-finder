@@ -61,26 +61,17 @@
   align-items: center;
 }
 
-.sidenav t {
-  padding: 15px 8px;
-  text-decoration: none;
-  font-size: 18px;
-  color: #818181;
-  display: block;
-}
 
-.sidenav p {
+.sidenavusername {
   text-align: center;
   width: 100%;
   border-bottom:2px solid #818181;
   text-decoration: none;
-  font-size: 18px;
-  color: #818181;
+  font-size: 20px;
+  color: white;
   display: block;
-}
-
-.sidenav t:hover {
-  color: #f1f1f1;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
 }
 
 .main-content {
