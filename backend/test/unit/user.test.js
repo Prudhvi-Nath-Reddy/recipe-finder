@@ -1,4 +1,10 @@
-import app from './app.js'
+import app from 'backend/src/app.js'
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+
+chai.use(chaiHttp);
+const { expect } = chai;
+
 
 describe('User API Tests', () => {
     it('Signin user', async () => {
@@ -17,5 +23,5 @@ describe('User API Tests', () => {
             console.error('Error during user sign-in test:', err);
             throw err;
         }
-    });
+    },20000);
 });
