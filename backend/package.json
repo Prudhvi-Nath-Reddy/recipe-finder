@@ -9,7 +9,6 @@
     "start": "nodemon app.js",
     "test": "jest --runInBand --detectOpenHandles --forceExit"
   },
-  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
