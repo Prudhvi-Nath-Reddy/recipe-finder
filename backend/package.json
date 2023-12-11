@@ -8,7 +8,6 @@
   "scripts": {
     "test": "mocha src/api/tests/user.test.js"
   },
-  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
