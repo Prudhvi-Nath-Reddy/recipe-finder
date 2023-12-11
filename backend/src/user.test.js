@@ -1,5 +1,4 @@
-
-import * as app from './app.js'
+const app = express();
 
 describe('User API Tests', () => {
     it('Signin user', async () => {
