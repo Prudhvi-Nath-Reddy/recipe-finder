@@ -9,8 +9,8 @@ const { expect } = chai;
 describe('User API Tests', () => {
     it('Signin user', async () => {
         const task = {
-            email: "prr",
-            password: "11"
+            username: "prr",
+            password: "22"
         };
 
         try {
@@ -18,7 +18,7 @@ describe('User API Tests', () => {
                 .post('/')
                 .send(task);
 
-            expect(res).to.have.status(200);
+                expect(res.body).to.equal("crctpswd");
         } catch (err) {
             console.error('Error during user sign-in test:', err);
             throw err;
