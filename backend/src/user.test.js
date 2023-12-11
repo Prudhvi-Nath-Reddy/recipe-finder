@@ -1,10 +1,5 @@
-import chai from 'chai';
-import chaiHttp from 'chai-http';
-import * as app from '../../app.js';
 
-chai.use(chaiHttp);
-
-const { expect } = chai;
+import * as app from './app.js'
 
 describe('User API Tests', () => {
     it('Signin user', async () => {
