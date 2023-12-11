@@ -6,7 +6,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "node backend/src/api/tests/user.test.js"
+    "test": "node src/api/tests/user.test.js"
   },
   "keywords": [],
   "author": "",
