@@ -106,9 +106,36 @@ const HomePage = () => {
   const handleUpdatePassword = () => {
     if (newPassword === confirmNewPassword) {
       // write update password function
+      try {
+        axios.post("http://localhost:8000/updatepass", {
+          username: loginUsername, 
+          password: newPassword,
+        })
+          .then(res => {
+            if (res.data === "done") {
+
+              alert("Successfully Updated")
+              handleSignout();
+  
+            }
+            else if (res.data === "err") {
+              alert("Something wen WRONG!!!")
+            }
+          
+  
+          })
+  
+      } catch (error) {
+  
+        console.log(error);
+  
+      }
+      setIsDeleteAccountPopupOpen(false);
+      
       handleCloseUpdatePasswordPopup();
     } else {
       console.log('Passwords do not match');
+      alert("Passwords Dont match")
     }
   };
 
@@ -118,6 +145,28 @@ const HomePage = () => {
 
   const handleDeleteAccount = () => {
     //write function to delete the account
+    try {
+      axios.post("http://localhost:8000/deleteaccount", {
+        username: loginUsername, 
+      })
+        .then(res => {
+          if (res.data === "done") {
+            handleSignout();
+            alert("Successfully deleted")
+
+          }
+          else if (res.data === "err") {
+            alert("Something wen WRONG!!!")
+          }
+        
+
+        })
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
     setIsDeleteAccountPopupOpen(false);
   };
 

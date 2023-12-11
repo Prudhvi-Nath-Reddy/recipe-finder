@@ -31,6 +31,45 @@ exports.signup = async (req, res) => {
         res.json("notexist");
     }
 };
+exports.updatepass = async (req, res) => {
+    const { username, password} = req.body;
+    try {
+        const user = await User.findOne({ username });
+
+        if (user) {
+            await User.updateOne({ username }, { $set: { password: password } });
+            console.log(password)
+
+            res.json('done');
+        } else {
+
+            res.json('err');
+        }
+    } catch (error) {
+
+        res.json('err');
+        console.log(error);
+    }
+};
+
+
+
+exports.deleteaccount = async (req, res) => {
+    const { username } = req.body;
+    try {
+        const user = await User.findOne({ username });
+
+        if (user) {
+            await User.deleteOne({ username });
+            res.json('done');
+        } else {
+            res.json('err');
+        }
+    } catch (error) {
+
+        res.json('err');
+    }
+};
 
 exports.getprofileimage = async (req,res) => {
     const { username} = req.body;
