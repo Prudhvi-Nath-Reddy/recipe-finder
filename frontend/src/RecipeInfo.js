@@ -3,16 +3,17 @@ import { useParams } from 'react-router-dom';
 import './RecipeInfo.css';
 import { useSelector } from 'react-redux';
 
-const RecipeInfo = ({ }) => {
-  const recipes = useSelector((state) => state.recipes)
+const RecipeInfo = () => {
+  const recipes = useSelector((state) => state.recipes);
   const { id } = useParams();
   const recipe = recipes.find((recipe) => recipe.id.toString() === id);
-  const len = recipe.image.length ;
-  
+
   if (!recipe) {
-    return <div>Recipe not found</div>;
+    return <div className="recipe-not-found">Recipe not found</div>;
   }
- 
+
+  const len = recipe.image.length;
+
   return (
     <div className="recipe-info">
       <div className="recipe-halfs">
@@ -42,8 +43,8 @@ const RecipeInfo = ({ }) => {
           <div className="recipe-details">
             <h2>Instructions</h2>
             <div className="instructions">
-              <pre>{recipe.instructions}</pre>
-            </div>            
+              {recipe.instructions}
+            </div>
           </div>
         </div>
       </div>
@@ -57,4 +58,3 @@ const RecipeInfo = ({ }) => {
 };
 
 export default RecipeInfo;
-

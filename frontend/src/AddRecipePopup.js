@@ -70,7 +70,16 @@ const AddRecipePopup = (props) => {
         process: process,
         precautions: precautions,
         author: author,
-      });
+      })
+      .then(res => {
+        if (res.data === "done") {
+          alert("Recipe added successfull!!");
+          
+        } else {
+          alert("something went wrong")
+          
+        }
+      })
     } catch (error) {
       console.log(error);
     }

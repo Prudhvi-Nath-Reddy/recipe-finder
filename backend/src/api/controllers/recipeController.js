@@ -13,7 +13,7 @@ exports.addRecipe = async (req, res) => {
             timeneeded:timeneeded
         });
         await newRecipe.save();
-        res.status(200).json(newRecipe);
+        res.json("done");
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Error adding recipe" });
