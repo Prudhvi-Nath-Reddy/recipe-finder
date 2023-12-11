@@ -1,10 +1,4 @@
-import chai from 'chai';
-import chaiHttp from 'chai-http';
-import app from '../../app.js';
-
-chai.use(chaiHttp);
-
-const { expect } = chai;
+import app from './app.js'
 
 describe('User API Tests', () => {
     it('Signin user', async () => {
@@ -19,11 +13,9 @@ describe('User API Tests', () => {
                 .send(task);
 
             expect(res).to.have.status(200);
-            // Add more specific assertions based on your application's behavior.
-            // For example, check for the presence of a token or user details.
         } catch (err) {
             console.error('Error during user sign-in test:', err);
-            throw err; // Re-throw the error to fail the test
+            throw err;
         }
     });
 });
