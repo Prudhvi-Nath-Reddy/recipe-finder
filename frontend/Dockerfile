@@ -1,5 +1,5 @@
 FROM node:18
-WORKDIR /frontend
+WORKDIR /
 COPY package*.json ./
 RUN npm install
 COPY . .
