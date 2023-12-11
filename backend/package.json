@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "directories": {
-    "test": "tests"
+    "test": "src/api/tests"
   },
   "scripts": {
-    "test": "node src/api/tests/user.test.js"
+    "test": "node user.test.js"
   },
   "keywords": [],
   "author": "",
