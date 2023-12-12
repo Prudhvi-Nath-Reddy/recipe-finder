@@ -2,7 +2,7 @@ pipeline {
     environment {
         docker_image = ""
         PORT = 5000
-        DB_URL = mongodb+srv://pru:123@cluster0.rhvlm1b.mongodb.net/
+        DB_URL = 'mongodb+srv://pru:123@cluster0.rhvlm1b.mongodb.net/'
     }
     agent any
     tools {
