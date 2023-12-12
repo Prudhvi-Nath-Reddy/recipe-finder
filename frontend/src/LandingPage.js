@@ -7,6 +7,7 @@ import { Navigate } from 'react-router-dom';
 import './LandingPage.css';
 import axios from 'axios';
 
+
 class LandingPage extends Component {
 
   constructor(props) {
