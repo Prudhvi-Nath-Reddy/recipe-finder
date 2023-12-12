@@ -25,4 +25,40 @@ describe('User API Tests', () => {
             throw err;
         }
     }, 20000);
+
+    it('user deosnt exist', async () => {
+        const task = {
+            username: "prasanth",
+            password: "22"
+        };
+
+        try {
+            const res = await chai.request(app)
+                .post('/')
+                .send(task);
+
+            expect(res.body).to.equal("notexist");
+        } catch (err) {
+            console.error('Error during user sign-in test:', err);
+            throw err;
+        }
+    }, 20000);
+
+    it('wrong password', async () => {
+        const task = {
+            username: "prr",
+            password: "11"
+        };
+
+        try {
+            const res = await chai.request(app)
+                .post('/')
+                .send(task);
+
+            expect(res.body).to.equal("wrngpswd");
+        } catch (err) {
+            console.error('Error during user sign-in test:', err);
+            throw err;
+        }
+    }, 20000);
 });
