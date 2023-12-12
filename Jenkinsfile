@@ -1,6 +1,8 @@
 pipeline {
     environment {
         docker_image = ""
+        PORT = 5000
+        DB_URL = mongodb+srv://pru:123@cluster0.rhvlm1b.mongodb.net/
     }
     agent any
     tools {
@@ -57,6 +59,20 @@ pipeline {
                     sh 'docker container prune -f'
                     sh 'docker image prune -f'
                 }
+            }
+        }
+        stage('Stage 5: Ansible Deployment'){
+            steps{
+                ansiblePlaybook colorized: true, 
+                credentialsId: 'localhost',
+                disableHostKeyChecking: true, 
+                installation: 'Ansible', 
+                inventory: 'inventory', 
+                playbook: 'playbook.yml',     
+                extraVars: [
+                    DB_URL: DB_URL,
+                    PORT: PORT,
+                ]
             }
         }
     }
