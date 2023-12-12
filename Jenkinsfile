@@ -1,6 +1,7 @@
 pipeline {
     environment {
-        docker_image = ""
+        docker_image_backend = ""
+        docker_image_frontend = ""
         PORT = 5000
         DB_URL = 'mongodb+srv://pru:123@cluster0.rhvlm1b.mongodb.net/'
     }
@@ -61,7 +62,7 @@ pipeline {
                 }
             }
         }
-        stage('Stage 5: Ansible Deployment'){
+        stage('Stage 6: Ansible Deployment'){
             steps{
                 ansiblePlaybook colorized: true, 
                 credentialsId: 'localhost',
