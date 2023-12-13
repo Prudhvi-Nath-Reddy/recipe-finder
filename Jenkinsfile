@@ -32,12 +32,12 @@ pipeline {
             steps {
                 dir('backend') {
                     script {
-                        docker_image_backend = docker.build "prasanthreddy12345/recipe-finder-backend:latest"
+                        docker_image_backend = docker.build "prudhveee/recipe-finder-backend:latest"
                     }
                 }
                 dir('frontend') {
                     script {
-                        docker_image_frontend = docker.build "prasanthreddy12345/recipe-finder-frontend:latest"
+                        docker_image_frontend = docker.build "prudhveee/recipe-finder-frontend:latest"
                     }
                 }
             }
