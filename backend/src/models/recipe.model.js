@@ -1,5 +1,5 @@
 const mongoose = require('../config/db');
-
+const logger = require('../utils/logger.js');
 const recipeSchema = new mongoose.Schema({
     recipename: {
         type: String,
@@ -32,6 +32,6 @@ const recipeSchema = new mongoose.Schema({
 });
 
 const Recipe = mongoose.model("recipe", recipeSchema);
-
+// logger.info("intialised recipe schema")
 module.exports = Recipe;
 

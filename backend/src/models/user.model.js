@@ -1,5 +1,5 @@
 const mongoose = require('../config/db');
-
+const logger = require('../utils/logger.js');
 const newSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -16,6 +16,6 @@ const newSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model("user", newSchema);
-
+// logger.info("intialised user schema")
 module.exports = User;
 
