@@ -1,7 +1,0 @@
-version: '3.5'
-services:    
-  frontend:
-    image: prasanthreddy12345/recipe-finder-frontend:latest
-    ports:
-      - '3000:3000'
-  
