@@ -4,10 +4,10 @@ services:
     image: prasanthreddy12345/recipe-finder-frontend:latest
     ports:
       - '3000:3000'
-  backend:
-    image: prasanthreddy12345/recipe-finder-backend:latest
-    ports:
-      - '5000:5000'
+  # backend:
+  #   image: prasanthreddy12345/recipe-finder-backend:latest
+  #   ports:
+  #     - '5000:5000'
     environment:
       - DB_URL= mongodb+srv://pru:123@cluster0.rhvlm1b.mongodb.net/
       - PORT=5000
