@@ -46,7 +46,7 @@ pipeline {
         stage('Stage 4: Push Docker Image to Hub') {
             steps {
                 script {
-                    docker.withRegistry('', 'DockerHubCred') {
+                    docker.withRegistry('', 'dockerhubcreds') {
                         docker_image_backend.push()
                         docker_image_frontend.push()
                     }
