@@ -16,7 +16,7 @@ pipeline {
                 url: 'https://github.com/Prudhvi-Nath-Reddy/recipe-finder.git'
             }
         }
-        stage('Stage 2: npm testins'){
+        stage('Stage 2: npm testings'){
             steps{
                 dir('backend') {
                     sh "npm install"
