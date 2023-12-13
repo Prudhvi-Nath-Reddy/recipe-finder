@@ -6,9 +6,9 @@ pipeline {
         DB_URL = 'mongodb+srv://pru:123@cluster0.rhvlm1b.mongodb.net/'
     }
     agent any
-    tools {
-        // nodejs 'NodeJS'
-    }
+    // tools {
+    //     nodejs 'NodeJS'
+    // }
     stages {
         stage('Stage 1: Git Clone') {
             steps {
