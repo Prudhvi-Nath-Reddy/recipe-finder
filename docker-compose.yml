@@ -3,7 +3,7 @@ services:
   backend:
     image: prudhveee/recipe-finder-backend:latest
     ports:
-      - '5000:5000'
+      - '8000:8000'
     environment:
       - DB_URL=mongodb+srv://pru:123@cluster0.rhvlm1b.mongodb.net/
       - PORT=5000
