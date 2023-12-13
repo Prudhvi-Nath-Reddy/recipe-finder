@@ -10,7 +10,7 @@
 
     - name: Pull docker image which is specified in docker compose
       shell:
-        cmd: docker-compose pull
+        cmd: /usr/local/bin/docker-compose pull
         chdir: ./
 
     - name: Running the docker images
