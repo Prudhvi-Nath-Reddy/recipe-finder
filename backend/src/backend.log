@@ -1,0 +1,18 @@
+info: Attempting to get all recipes {"timestamp":"2023-12-13T20:21:26.414Z"}
+info: Recipes retrieved successfully {"timestamp":"2023-12-13T20:21:26.422Z"}
+info: Attempting to get all recipes {"timestamp":"2023-12-13T20:21:26.425Z"}
+info: Recipes retrieved successfully {"timestamp":"2023-12-13T20:21:26.426Z"}
+info: Attempting user login for username: p {"timestamp":"2023-12-13T20:21:34.394Z"}
+warn: Entered wrong password {"timestamp":"2023-12-13T20:21:34.400Z"}
+info: Attempting user signup for username: p {"timestamp":"2023-12-13T20:23:31.906Z"}
+info: User signed up successfully: p {"timestamp":"2023-12-13T20:23:31.923Z"}
+info: Attempting user login for username: p {"timestamp":"2023-12-13T20:23:35.450Z"}
+info: User logged in ! {"timestamp":"2023-12-13T20:23:35.468Z"}
+info: Attempting to get profile image for username: p {"timestamp":"2023-12-13T20:23:35.514Z"}
+info: Attempting to get profile image for username: p {"timestamp":"2023-12-13T20:23:35.515Z"}
+info: Profile image retrieved successfully for username: p {"timestamp":"2023-12-13T20:23:35.518Z"}
+info: Attempting to get all ingredients {"timestamp":"2023-12-13T20:23:35.519Z"}
+info: Profile image retrieved successfully for username: p {"timestamp":"2023-12-13T20:23:35.521Z"}
+info: Attempting to get all ingredients {"timestamp":"2023-12-13T20:23:35.523Z"}
+info: Ingredients retrieved successfully {"timestamp":"2023-12-13T20:23:35.524Z"}
+info: Ingredients retrieved successfully {"timestamp":"2023-12-13T20:23:35.526Z"}

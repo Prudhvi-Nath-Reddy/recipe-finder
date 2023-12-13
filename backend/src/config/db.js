@@ -1,10 +1,14 @@
 const mongoose = require("mongoose");
+const mongourl = "mongodb+srv://pru:123@cluster0.rhvlm1b.mongodb.net/recipe"
+const mongourl2 = "mongodb://localhost:27017/"
+const mongourl3 = "mongodb://mongodb:27017/"
 
-mongoose.connect("mongodb+srv://pru:123@cluster0.rhvlm1b.mongodb.net/recipe")
+mongoose.connect(mongourl3)
     .then(() => {
         console.log("mongodb connected");
     })
-    .catch(() => {
+    .catch((err) => {
+        console.log(err)
         console.log("mongodb connection failed");
     });
 
