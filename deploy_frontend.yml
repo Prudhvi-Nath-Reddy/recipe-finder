@@ -1,7 +1,7 @@
 ---
 - name: Copy Frontend Docker Compose file from host machine to remote host
   copy:
-    src: frontend/docker-compose.yml
+    src: ../frontend/docker-compose.yml
     dest: ./
 
 - name: Pull and run Frontend Docker image
