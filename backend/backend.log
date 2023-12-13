@@ -1,0 +1,22 @@
+info: Attempting user login for username: p {"timestamp":"2023-12-13T21:46:05.388Z"}
+info: User logged in ! {"timestamp":"2023-12-13T21:46:18.823Z"}
+info: Attempting to get profile image for username: p {"timestamp":"2023-12-13T21:46:18.857Z"}
+info: Attempting to get all ingredients {"timestamp":"2023-12-13T21:46:18.859Z"}
+info: Attempting to get profile image for username: p {"timestamp":"2023-12-13T21:46:18.863Z"}
+info: Attempting to get all ingredients {"timestamp":"2023-12-13T21:46:18.866Z"}
+info: Ingredients retrieved successfully {"timestamp":"2023-12-13T21:46:19.135Z"}
+info: Ingredients retrieved successfully {"timestamp":"2023-12-13T21:46:20.578Z"}
+info: Profile image retrieved successfully for username: p {"timestamp":"2023-12-13T21:46:30.772Z"}
+info: Profile image retrieved successfully for username: p {"timestamp":"2023-12-13T21:46:32.086Z"}
+info: Attempting to get profile image for username: null {"timestamp":"2023-12-13T21:47:21.638Z"}
+info: Attempting to get profile image for username: null {"timestamp":"2023-12-13T21:47:21.640Z"}
+info: Attempting to get all recipes {"timestamp":"2023-12-13T21:47:21.641Z"}
+info: Attempting to get all ingredients {"timestamp":"2023-12-13T21:47:21.643Z"}
+info: Attempting to get all ingredients {"timestamp":"2023-12-13T21:47:21.645Z"}
+info: Attempting to get all recipes {"timestamp":"2023-12-13T21:47:21.647Z"}
+info: Profile image retrieved successfully for username: null {"timestamp":"2023-12-13T21:47:21.904Z"}
+info: Profile image retrieved successfully for username: null {"timestamp":"2023-12-13T21:47:21.912Z"}
+info: Ingredients retrieved successfully {"timestamp":"2023-12-13T21:47:21.916Z"}
+info: Ingredients retrieved successfully {"timestamp":"2023-12-13T21:47:21.921Z"}
+info: Recipes retrieved successfully {"timestamp":"2023-12-13T21:47:37.160Z"}
+info: Recipes retrieved successfully {"timestamp":"2023-12-13T21:48:14.130Z"}
