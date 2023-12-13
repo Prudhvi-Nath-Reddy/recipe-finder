@@ -5,13 +5,26 @@
   tasks:
     - name: Copy Docker Compose file from host machine to remote host
       copy:
-        src: docker-compose.yml
+        src: docker-backend.yml
         dest: ./
 
     - name: Pull docker image which is specified in docker compose
       shell:
-        cmd: docker-compose pull
+        cmd: docker-backend pull
         chdir: ./
 
     - name: Running the docker images
-      command: docker-compose up -d --build
+      command: docker-backend up -d --build
+
+    - name: Copy Docker Compose file from host machine to remote host
+      copy:
+        src: docker-frontend.yml
+        dest: ./
+
+    - name: Pull docker image which is specified in docker compose
+      shell:
+        cmd: docker-frontend pull
+        chdir: ./
+
+    - name: Running the docker images
+      command: docker-frontend up -d --build
