@@ -6,7 +6,7 @@ import chef from './images/chef.gif';
 import { Navigate } from 'react-router-dom';
 import './LandingPage.css';
 import axios from 'axios';
-const logger = require('./logger.js');
+
 
 class LandingPage extends Component {
 
@@ -50,7 +50,6 @@ class LandingPage extends Component {
 
     if (this.state.signupPassword !== this.state.signupConfirmPassword) {
       alert('Password and Confirm Password do not match!');
-      logger.warn('signupPassword and signupConfirmPassword do not match for the user ' + this.state.signupUsername);
       return;
     }
 
@@ -66,11 +65,10 @@ class LandingPage extends Component {
         .then(res => {
           if (res.data === "exist") {
             alert("account alreadyexists")
-            logger.info("Account already exists with username:" + signupUsername )
+
           }
           else if (res.data === "signedup") {
             alert("Hurray!!! Succefully signed up")
-            logger.info('Account created succesfully with username:' + signupUsername)
           }
         
 
@@ -79,7 +77,7 @@ class LandingPage extends Component {
     } catch (error) {
 
       console.log(error);
-      logger.error('Error while signup' +error);
+
     }
     this.handleCloseSignupPopup();
   };
@@ -102,19 +100,16 @@ class LandingPage extends Component {
           }
           else if (res.data === "notexist") {
             alert("User not signed up")
-            logger.warn('user not exist with username' + this.state.loginUsername)
           }
           else if (res.data === "wrngpswd") {
             alert("wrong password")
-            logger.warn('Wrong password for the user ' + this.state.loginUsername);
           }
         })
 
     } catch (error) {
       alert("wrong details")
-      logger.warn('Wrong details entered ');
       console.log(error);
-      logger.error('Error while logging in' + error);
+
     }
 
     this.handleCloseBrowseRecipesPopup();
@@ -142,10 +137,13 @@ class LandingPage extends Component {
 
   handleImageUpload = (event) => {
     const file = event.target.files[0];
-
+  
+    // Perform operations with the selected file
+    // For example, you can read the contents using FileReader
   
     const reader = new FileReader();
     reader.onloadend = () => {
+      // Access the file content using reader.result
       var imageData = reader.result;
       this.setState({ signupImage: imageData });
       console.log('Image Data URL3:', this.state.signupImage);

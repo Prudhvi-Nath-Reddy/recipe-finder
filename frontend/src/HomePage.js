@@ -7,7 +7,6 @@ import Select from 'react-select';
 import axios from 'axios';
 import './HomePage.css';
 import { useSelector } from 'react-redux';
-const logger = require('./logger.js');
 
 const HomePage = () => {
   const alldata = [];
@@ -23,12 +22,14 @@ const HomePage = () => {
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [isDeleteAccountPopupOpen, setIsDeleteAccountPopupOpen] = useState(false);
 
+  // const loginUsername = useSelector((state) => state.loginUsername);
   const loginUsername = sessionStorage.getItem('loginusername');
   const recipes = useSelector((state) => state.recipes)
   console.log('username:', loginUsername)
   console.log('recipes:', recipes)
   useEffect(() => {
     try {
+      console.log('user name bacha :', loginUsername);
       const storedProfileImage = sessionStorage.getItem('profileImage');
       if (storedProfileImage) {
         setProfileImage(storedProfileImage);
@@ -37,6 +38,7 @@ const HomePage = () => {
           var gotprofimage = res.data;
           console.log('progimage:', gotprofimage);
 
+          // Save profile image to sessionStorage
           sessionStorage.setItem('profileImage', gotprofimage);
 
           setProfileImage(gotprofimage);
@@ -44,7 +46,6 @@ const HomePage = () => {
       }
     } catch (error) {
       console.log(error);
-      logger.error('Error fetching profile image:', error);
     }
 
     try {
@@ -62,11 +63,9 @@ const HomePage = () => {
         }
 
         setAllIngredients(alldata);
-        logger.info('fetched all ingredients data')
       });
     } catch (error) {
       console.log(error);
-      logger.error('Error fetching ingredients:', error);
     }
   }, []);
 
@@ -106,6 +105,7 @@ const HomePage = () => {
 
   const handleUpdatePassword = () => {
     if (newPassword === confirmNewPassword) {
+      // write update password function
       try {
         axios.post("http://localhost:8000/updatepass", {
           username: loginUsername, 
@@ -114,14 +114,12 @@ const HomePage = () => {
           .then(res => {
             if (res.data === "done") {
 
-              alert("Successfully Updated");
-              logger.info('Password updated successfully for ' + loginUsername);
+              alert("Successfully Updated")
               handleSignout();
   
             }
             else if (res.data === "err") {
-              alert("Something wen WRONG!!!");
-              logger.error('Error updating password for ' + loginUsername);
+              alert("Something wen WRONG!!!")
             }
           
   
@@ -130,7 +128,7 @@ const HomePage = () => {
       } catch (error) {
   
         console.log(error);
-        logger.error('Error updating password:', error);
+  
       }
       setIsDeleteAccountPopupOpen(false);
       
@@ -138,7 +136,6 @@ const HomePage = () => {
     } else {
       console.log('Passwords do not match');
       alert("Passwords Dont match")
-      logger.warn('Passwords do not match for ' + loginUsername);
     }
   };
 
@@ -147,6 +144,7 @@ const HomePage = () => {
   };
 
   const handleDeleteAccount = () => {
+    //write function to delete the account
     try {
       axios.post("http://localhost:8000/deleteaccount", {
         username: loginUsername, 
@@ -155,12 +153,10 @@ const HomePage = () => {
           if (res.data === "done") {
             handleSignout();
             alert("Successfully deleted")
-            logger.info('Account deleted successfully for ' + loginUsername);
 
           }
           else if (res.data === "err") {
             alert("Something wen WRONG!!!")
-            logger.error('Error deleting account for ' + loginUsername);
           }
         
 
@@ -169,7 +165,7 @@ const HomePage = () => {
     } catch (error) {
 
       console.log(error);
-      logger.error('Error deleting account:', error);
+
     }
     setIsDeleteAccountPopupOpen(false);
   };
@@ -179,7 +175,7 @@ const HomePage = () => {
   };
 
   const handleSignout = () => {
-    logger.info('User signed out: ' + loginUsername);
+
     sessionStorage.removeItem('loginusername');
     sessionStorage.removeItem('profileImage');
     window.location.href = '/';
