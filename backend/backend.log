@@ -30,3 +30,11 @@ info: Ingredients retrieved successfully {"timestamp":"2023-12-14T07:22:12.642Z"
 info: Ingredients retrieved successfully {"timestamp":"2023-12-14T07:22:14.089Z"}
 info: Profile image retrieved successfully for username: p {"timestamp":"2023-12-14T07:22:24.684Z"}
 info: Profile image retrieved successfully for username: p {"timestamp":"2023-12-14T07:22:25.891Z"}
+info: Attempting user login for username: prr {"timestamp":"2023-12-14T07:55:39.746Z"}
+error: Login error for username: prr, Error: Operation `users.findOne()` buffering timed out after 10000ms {"timestamp":"2023-12-14T07:55:49.761Z"}
+info: Attempting user login for username: prasanth {"timestamp":"2023-12-14T07:55:49.804Z"}
+error: Login error for username: prasanth, Error: Operation `users.findOne()` buffering timed out after 10000ms {"timestamp":"2023-12-14T07:55:59.813Z"}
+info: Attempting user login for username: prr {"timestamp":"2023-12-14T07:55:59.829Z"}
+error: Login error for username: prr, Error: Operation `users.findOne()` buffering timed out after 10000ms {"timestamp":"2023-12-14T07:56:09.837Z"}
+info: Attempting to get all recipes {"timestamp":"2023-12-14T07:56:11.353Z"}
+error: Error retrieving recipes, Error: Operation `recipes.find()` buffering timed out after 10000ms {"timestamp":"2023-12-14T07:56:21.367Z"}
