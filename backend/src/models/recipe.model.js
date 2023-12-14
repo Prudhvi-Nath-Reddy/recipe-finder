@@ -505,10 +505,10 @@ const populateDatabase = async () => {
     }
 };
 
-// // Execute the function
-// populateDatabase()
-//     .then(() => console.log("success"))
-//     .catch(err => console.error(err));
+// Execute the function
+populateDatabase()
+    .then(() => console.log("success"))
+    .catch(err => console.error(err));
 
 
 

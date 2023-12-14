@@ -130,9 +130,9 @@ const populateIngredientDatabase = async () => {
     }
 };
 
-// // Uncomment the line below if you want to execute the population function.
-// populateIngredientDatabase()
-//     .then(() => console.log("success"))
-//     .catch(err => console.error(err));
+// Uncomment the line below if you want to execute the population function.
+populateIngredientDatabase()
+    .then(() => console.log("success"))
+    .catch(err => console.error(err));
 
 module.exports = Ingredient;
