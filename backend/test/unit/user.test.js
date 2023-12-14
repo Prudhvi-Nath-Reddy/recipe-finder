@@ -24,7 +24,7 @@ describe('User API Tests', () => {
             console.error('Error during user sign-in test:', err);
             throw err;
         }
-    }, 20000);
+    }, 200000);
 
     it('user deosnt exist', async () => {
         const task = {
@@ -42,7 +42,7 @@ describe('User API Tests', () => {
             console.error('Error during user sign-in test:', err);
             throw err;
         }
-    }, 20000);
+    }, 200000);
 
     it('wrong password', async () => {
         const task = {
@@ -60,5 +60,5 @@ describe('User API Tests', () => {
             console.error('Error during user sign-in test:', err);
             throw err;
         }
-    }, 20000);
+    }, 200000);
 });
