@@ -65,18 +65,10 @@ class LandingPage extends Component {
         .then(res => {
           if (res.data === "exist") {
             alert("account alreadyexists")
-<<<<<<< Updated upstream
 
           }
           else if (res.data === "signedup") {
             alert("Hurray!!! Succefully signed up")
-=======
-            logger.info("Account already exists with username:" + this.state.signupUsername )
-          }
-          else if (res.data === "signedup") {
-            alert("Hurray!!! Succefully signed up")
-            logger.info('Account created succesfully with username:' + this.state.signupUsername)
->>>>>>> Stashed changes
           }
         
 
