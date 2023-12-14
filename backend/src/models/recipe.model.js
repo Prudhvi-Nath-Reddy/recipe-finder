@@ -494,6 +494,7 @@ const recipeList = [
 
 // Function to populate the database
 const populateDatabase = async () => {
+<<<<<<< Updated upstream
     try {
         for (let i = 0; i < recipeList.length; i++) {
             const recipe = new Recipe(recipeList[i]);
@@ -502,6 +503,11 @@ const populateDatabase = async () => {
         console.log('100 mock recipes added to the database');
     } catch (error) {
         console.error(error);
+=======
+    for (let i = 0; i < recipeList.length; i++) {
+        const mockRecipe = recipeList[i];
+        await mockRecipe.save();
+>>>>>>> Stashed changes
     }
 };
 
@@ -510,11 +516,14 @@ populateDatabase()
     .then(() => console.log("success"))
     .catch(err => console.error(err));
 
+<<<<<<< Updated upstream
 
 
 
 
 // logger.info("intialised recipe schema")
+=======
+>>>>>>> Stashed changes
 
 
 module.exports = Recipe;

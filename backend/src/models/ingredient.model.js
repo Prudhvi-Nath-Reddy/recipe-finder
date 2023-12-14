@@ -116,7 +116,7 @@ const populateIngredientDatabase = async () => {
             "Aam panna",
             "Dhokla",
             "Murgh malaiwala",
-            "chicken"
+            "Chicken"
         ];
 
         for (let i = 0; i < ingredientList.length; i++) {

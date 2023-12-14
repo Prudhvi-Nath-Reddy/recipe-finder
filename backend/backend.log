@@ -30,6 +30,7 @@ info: Ingredients retrieved successfully {"timestamp":"2023-12-14T07:22:12.642Z"
 info: Ingredients retrieved successfully {"timestamp":"2023-12-14T07:22:14.089Z"}
 info: Profile image retrieved successfully for username: p {"timestamp":"2023-12-14T07:22:24.684Z"}
 info: Profile image retrieved successfully for username: p {"timestamp":"2023-12-14T07:22:25.891Z"}
+<<<<<<< HEAD
 info: Attempting user login for username: prr {"timestamp":"2023-12-14T07:55:39.746Z"}
 error: Login error for username: prr, Error: Operation `users.findOne()` buffering timed out after 10000ms {"timestamp":"2023-12-14T07:55:49.761Z"}
 info: Attempting user login for username: prasanth {"timestamp":"2023-12-14T07:55:49.804Z"}
@@ -38,3 +39,27 @@ info: Attempting user login for username: prr {"timestamp":"2023-12-14T07:55:59.
 error: Login error for username: prr, Error: Operation `users.findOne()` buffering timed out after 10000ms {"timestamp":"2023-12-14T07:56:09.837Z"}
 info: Attempting to get all recipes {"timestamp":"2023-12-14T07:56:11.353Z"}
 error: Error retrieving recipes, Error: Operation `recipes.find()` buffering timed out after 10000ms {"timestamp":"2023-12-14T07:56:21.367Z"}
+=======
+info: Attempting to get all recipes {"timestamp":"2023-12-14T07:52:31.295Z"}
+info: Attempting to get all recipes {"timestamp":"2023-12-14T07:52:31.307Z"}
+info: Recipes retrieved successfully {"timestamp":"2023-12-14T07:52:38.585Z"}
+info: Attempting user login for username: prr {"timestamp":"2023-12-14T07:52:39.392Z"}
+info: User logged in ! {"timestamp":"2023-12-14T07:52:39.936Z"}
+info: Attempting to get profile image for username: prr {"timestamp":"2023-12-14T07:52:40.138Z"}
+info: Attempting to get profile image for username: prr {"timestamp":"2023-12-14T07:52:40.143Z"}
+info: Attempting to get all ingredients {"timestamp":"2023-12-14T07:52:40.145Z"}
+info: Attempting to get all ingredients {"timestamp":"2023-12-14T07:52:40.152Z"}
+info: Recipes retrieved successfully {"timestamp":"2023-12-14T07:52:40.189Z"}
+info: Profile image retrieved successfully for username: prr {"timestamp":"2023-12-14T07:52:41.128Z"}
+info: Ingredients retrieved successfully {"timestamp":"2023-12-14T07:52:42.069Z"}
+info: Ingredients retrieved successfully {"timestamp":"2023-12-14T07:52:42.196Z"}
+info: Profile image retrieved successfully for username: prr {"timestamp":"2023-12-14T07:52:42.316Z"}
+info: Attempting to get all ingredients {"timestamp":"2023-12-14T07:55:31.306Z"}
+info: Attempting to get all recipes {"timestamp":"2023-12-14T07:55:31.320Z"}
+info: Attempting to get all ingredients {"timestamp":"2023-12-14T07:55:31.324Z"}
+info: Attempting to get all recipes {"timestamp":"2023-12-14T07:55:31.329Z"}
+info: Ingredients retrieved successfully {"timestamp":"2023-12-14T07:55:31.877Z"}
+info: Ingredients retrieved successfully {"timestamp":"2023-12-14T07:55:31.893Z"}
+info: Recipes retrieved successfully {"timestamp":"2023-12-14T07:55:34.860Z"}
+info: Recipes retrieved successfully {"timestamp":"2023-12-14T07:55:35.710Z"}
+>>>>>>> 0b711fd03fc0a30ae87ce855fcbe18ca33117fed
