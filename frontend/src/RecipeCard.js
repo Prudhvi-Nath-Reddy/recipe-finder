@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './RecipeCard.css'; // Import the CSS file
+import './RecipeCard.css';
 
 class RecipeCard extends Component {
   render() {

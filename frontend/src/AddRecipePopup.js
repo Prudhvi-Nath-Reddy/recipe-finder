@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
-import { useSelector } from 'react-redux'; // Importing useSelector from react-redux
+import { useSelector } from 'react-redux';
 import "./AddRecipePopup.css";
+const logger = require('./logger.js');
 
 const AddRecipePopup = (props) => {
   const [recipeName, setRecipeName] = useState('');
@@ -19,7 +20,7 @@ const AddRecipePopup = (props) => {
   useEffect(() => {
     handleIngredients();
     handleAuthor();
-  }, [loginUsername]); // Trigger useEffect when loginUsername changes
+  }, [loginUsername]);
 
   const handleIngredients = () => {
     const { ingredientsdata } = props;
@@ -74,14 +75,16 @@ const AddRecipePopup = (props) => {
       .then(res => {
         if (res.data === "done") {
           alert("Recipe added successfull!!");
+          logger.info('Recipe added successfully by ' + author);
           
         } else {
-          alert("something went wrong")
-          
+          alert("something went wrong");
+          logger.error('Failed to add recipe for ' + author);
         }
       })
     } catch (error) {
       console.log(error);
+      logger.error('Error adding recipe:', error);
     }
 
     handleClosePopup();
