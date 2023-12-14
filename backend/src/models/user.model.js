@@ -16,6 +16,33 @@ const newSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model("user", newSchema);
+
+
+// Function to populate the database with Users
+const populateUsers = async () => {
+    try {
+        const Userslist = [{
+            username:"prr",
+            password: "22",
+            profileimage2: " ",
+        }
+        ];
+
+        for (let i = 0; i < Userslist.length; i++) {
+            const users = new User(Userslist[i] );
+            await users.save();
+        }
+
+        console.log('Users added to the database');
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+populateUsers()
+    .then(() => console.log("success"))
+    .catch(err => console.error(err));
+
 // logger.info("intialised user schema")
 module.exports = User;
 

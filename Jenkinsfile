@@ -20,15 +20,17 @@ pipeline {
             steps{
                 dir('backend') {
                     sh "npm install"
-                    // sh "npm test"
+                    sh "npm test"
                 }
                 dir('frontend') {
                     sh "npm install"
+                    sh "npm test"
+
                 }
                 
             }
         }
-        stage('Stage 3: Build Docker end Image') {
+        stage('Stage 3: Build Docker Images') {
             steps {
                 dir('backend') {
                     script {
